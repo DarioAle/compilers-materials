@@ -1,4 +1,18 @@
 #include <iostream>
+#include <cstring>
+
+/*
+The following program receives several strings  and 
+test the membership of the string to the following grammar
+
+E -> TG
+G -> +TG | empty
+T -> FH
+H -> *FH | empty
+F -> (E) | a
+
+The program ends when 0 is given as an input
+*/
 
 using namespace std;
 
@@ -49,7 +63,11 @@ int main()
     while(true) {
         string s;
         cin >> s;
+        char exit[] = "0";
         input = s.c_str();
+
+        if(strcmp(exit, input) == 0) break;
+
         if(E() && *input == '\0')
             cout << "Aceptada\n";
         else
