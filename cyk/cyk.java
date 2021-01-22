@@ -7,7 +7,6 @@ class cyk {
     // membership test of string on a grammar throught the cyk algorithm
     public static void printGrammar(LinkedHashMap<String, LinkedList<String>> g) {
         Iterator hmIt = g.entrySet().iterator();
-
         while(hmIt.hasNext()) {
             Map.Entry mapElement = (Map.Entry) hmIt.next();
             LinkedList<String> prod = (LinkedList<String>) mapElement.getValue();
@@ -37,5 +36,4 @@ class cyk {
 
         printGrammar(grammar);
     }
-
 }
