@@ -13,7 +13,9 @@ bool F();
 
 bool isTerminal(char c) 
 {
-    if(*input != '\0')
+    if(c == '$') return true;
+
+    if(*input != '\0') 
         return *input++ == c;
     else
         return false;
@@ -25,7 +27,7 @@ bool E() {
 
 bool G(){
     const char *save = input;
-    return (isTerminal('+') && T() && G()) || (input = save, *input == '\0');
+    return (isTerminal('+') && T() && G()) || (input = save, isTerminal('$'));
 }
 
 bool T() {
@@ -34,7 +36,7 @@ bool T() {
 
 bool H() {
     const char *save = input;
-    return (isTerminal('*') && F() && H()) || (input = save, *input == '\0');
+    return (isTerminal('*') && F() && H()) || (input = save, isTerminal('$'));
 }
 
 bool F() {
@@ -44,14 +46,19 @@ bool F() {
 
 int main() 
 {
-    string s;
-    cin >> s;
+    while(true) {
+        string s;
+        cin >> s;
+        input = s.c_str();
+        if(E() && *input == '\0')
+            cout << "Aceptada\n";
+        else
+            cout << "Rechazada\n";
+    }
 
-
-    input = s.c_str();
-    if(E() && *input == '\0')
-        cout << "Aceptada\n";
-    else
-        cout << "Rechazada\n";
     return 0;
+
+
+
+//https://lti.educonnector.io/webex/meetings/1616271/join
 }
