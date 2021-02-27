@@ -1,10 +1,10 @@
 /* 
         id      +       *       (       )       $
 E     E->TE'                  E->TE'    
-E'
-T
-T'
-F
+E'            E'->TE'                   E'->Ɛ    E'->Ɛ
+T     T->FT'                  T->FT'
+T'           T'->Ɛ  T'->*FT'            T'->Ɛ    T'->Ɛ
+F     F->id                   F->(E)
 
 */
 
