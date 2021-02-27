@@ -1,0 +1,82 @@
+
+##"This is an example from a real-world application, where we were using Genetic Programming to do simple symbolic regression. We needed a good way to visualize the trees that were being created, and it didn't take long to code up some lisp to create a dot file that visualized multiple individuals. The next step was to provide color-coding of key nodes so that we could illustrate crossover and mutation of individuals before-and-after-style. This is a sample dot file from some early debugging." Contributed by Wayne Folta. 
+
+##Command to get the layout: "dot  -Tpng thisfile > thisfile.png"
+
+
+graph ""
+{
+#   node [fontsize=10,width=".2", height=".2", margin=0];
+#   graph[fontsize=8];
+   subgraph cluster38
+   {
+   label="{ if ( bool ) if ( bool ) instr else instr }"
+   programa ;
+   programa [label="Programa"] ;
+   programa -- bloque ;
+
+   bloque ;
+   bloque [label="Bloque"] ;
+   bloque -- term0
+   bloque -- decls
+   bloque -- instrs
+   bloque -- term1
+   
+   term0 ;
+   term0 [color="red" label="{"] ;
+   
+   decls ;
+   decls [label="decls"] ;
+   decls -- term2
+
+   term2 [color="red" label = "epsilon"]
+   
+   instrs ;
+   instrs [label="instrs"] ;
+   instrs -- instrs1
+   instrs -- instr
+
+   instrs1 [label="instrs"]
+
+   instr [label="instr"]
+   instr -- if
+   instr -- OpPar #open parenthesis
+   instr -- bool
+   instr -- ClPar #closed parenthesis
+   instr -- instr1
+
+   instr1 [label="instr"]
+   instr1 -- if1
+   instr1 -- OpPar1 #open parenthesis
+   instr1 -- bool1
+   instr1 -- ClPar1 #closed parenthesis
+   instr1 -- instr2
+   instr1 -- else
+   instr1 -- instr3
+
+   if1 [color="red" label="if"]
+   OpPar1 [color="red" label = "("]
+   ClPar1 [color="red" label = ")"]
+   
+   if [color="red"]
+   OpPar [color="red" label = "("]
+   ClPar [color="red" label = ")"]
+   else [color="red" label = "else"]
+   instr3[label = instr]
+   instr2[label =instr]
+   bool1 [label = "bool"]
+
+   term1 ;
+   term1 [color="red" label="}"] ;
+   
+
+   
+   
+   
+   
+   
+   
+   }
+}
+
+
