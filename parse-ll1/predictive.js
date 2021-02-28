@@ -192,27 +192,7 @@ const predictiveTable = {
     }
 }
 
-function transformTerminal(terminal) {
-    if(terminal == "+") 
-        return "plus"
-    if(terminal == "*")
-        return "times"
-    if(terminal == "(")
-        return "opp"
-    if(terminal == ")")
-        return "clp"
-    if(terminal == "$")
-        return "term"
-    
-    return terminal
-}
-
 function tableLookup(variable, terminal) {
-    // console.log("received variable: " + variable)
-    // console.log("received terminal: " + terminal)
-
-    terminal = transformTerminal(terminal);
-
     if(predictiveTable[variable] == undefined) {
         console.error("table erro: variable " + variable + " not expected");
         return [];
