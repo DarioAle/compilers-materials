@@ -1,3 +1,6 @@
+let tokenArr = [];
+
+
 function main(){
   let readline = require('readline');
   let rl = readline.createInterface({
@@ -9,17 +12,15 @@ function main(){
   rl.on('line', function(line){
       console.log(DFA(line));
   })
-  
-}
 
-let tokenArr = [];
+}
 
 function pushError(c){
   tokenArr.push({valor : c, tipo : 'error'})
 }
 
 function DFA(w){
-    tokenArr = []
+    tokenArr = [];
     // w = w.trim();
     w = w + ' ';
     // console.log(w);
@@ -40,7 +41,25 @@ function DFA(w){
                 else if(temp === ' '){
                   sbstrBegin++;
                   break;
-                }else {
+                }else if(temp == "+") {
+                  state = 0;
+                  sbstrBegin++;
+                  tokenArr.push({valor : "+", tipo : "plus"});
+                } else if(temp == "*") {
+                  state = 0;
+                  sbstrBegin++;
+                  tokenArr.push({valor : "*", tipo : "times"});
+
+                } else if(temp == "(") {state = 0;
+                    sbstrBegin++;
+                    tokenArr.push({valor : "(", tipo : "opp"});
+                    
+                } else if(temp == ")") {
+                  state = 0;
+                  sbstrBegin++;
+                  tokenArr.push({valor : ")", tipo : "clp"});
+
+                } else {
                   state = 0;
                   sbstrBegin++;
                   pushError(temp);
